@@ -12,13 +12,14 @@ namespace ViewModel
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new Membership();
         }
         public Membership_List SelectAll()
         {
-            command.CommandText = $"SELECT Membership.Join_Date, Membership.Birthday_Day, Users.ID, Users.Username, Users.Email, Users.Passkey, Users.Role\r\nFROM" +
-                $"(Users INNER JOIN\r\n" +
-                $"Membership ON Users.ID = Membership.ID)";
+            command.CommandText = $"SELECT Membership.Join_Date, Membership.Birthday_Day, Users.ID, " +
+                $" Users.Username, Users.Email, Users.Passkey, Users.Role FROM " +
+                $" (Users INNER JOIN " +
+                $" Membership ON Users.ID = Membership.ID)";
 
             Membership_List membership_list = new Membership_List(base.Select());
             return membership_list;
@@ -27,7 +28,8 @@ namespace ViewModel
         {
             Membership m = entity as Membership;
             m.Join_Date = DateTime.Parse(reader["join_date"].ToString());
-            m.Birthday_Date = DateTime.Parse(reader["birthday_date"].ToString());
+          
+            m.Birthday_Date = DateTime.Parse(reader["birthday_day"].ToString());
             base.CreateModel(entity);
             return entity;
         }
@@ -51,16 +53,28 @@ namespace ViewModel
                 command.Parameters.Add(new OleDbParameter("@mid", m.Id));
             }
         }
+        
 
             public override void Delete(BaseEntity entity)
         {
             BaseEntity reqEntity = this.NewEntity();
             if (entity !=  null & entity.GetType() == reqEntity.GetType())
                 {
-                    deleted.Add(new ChangeEntity(this.CreateDeletedSQL, entity));
-                    deleted.Add(new ChangeEntity(base.CreateDeletedSQL, entity));
+                deleted.Add(new ChangeEntity(base.CreateDeletedSQL, entity));
+                deleted.Add(new ChangeEntity(this.CreateDeletedSQL, entity));
                 }
         }
+
+        public override void Insert(BaseEntity entity)
+        {
+            BaseEntity reqEntity = this.NewEntity();
+            if (entity != null & entity.GetType() == reqEntity.GetType())
+            {
+                inserted.Add(new ChangeEntity(base.CreateInsertdSQL, entity));
+                inserted.Add(new ChangeEntity(this.CreateInsertdSQL, entity));
+            }
+        }
+
         protected override void CreateInsertdSQL(BaseEntity entity, OleDbCommand cmd)
         {
             Membership m = entity as Membership;
@@ -69,8 +83,9 @@ namespace ViewModel
                 string sqlStr = $"Insert INTO Membership (ID,Join_Date,Birthday_Day) VALUES (@mID,@mJoin_Date,@mBirthday_Date)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@mID", m.Id));
-                command.Parameters.Add(new OleDbParameter("@mJoin_Date", m.Join_Date));
                 command.Parameters.Add(new OleDbParameter("@mBirthday_Date", m.Birthday_Date));
+                command.Parameters.Add(new OleDbParameter("@mJoin_Date", m.Join_Date));
+
             }
         }
 
@@ -79,10 +94,15 @@ namespace ViewModel
             Membership m= entity as Membership;
             if (m != null)
             {
-                string sqlStr = $"UPDATE Videos SET MembershipJoinDate=@mJoinDate,MembershipBirthdayDate=@mBirthdayDate WHERE ID=@id";
+                string sqlStr = $"UPDATE Membership SET Join_Date=@mJoinDate,Birthday_Day=@mBirthdayDate WHERE ID=@id";
                 command.CommandText = sqlStr;
-                command.Parameters.Add(new OleDbParameter("@mJoinDate", m.Join_Date));
-                command.Parameters.Add(new OleDbParameter("@mBirthdayDate", m.Birthday_Date));
+                OleDbParameter param=new OleDbParameter("@mJoinDate",OleDbType.DBDate);
+                param.Value = m.Join_Date;
+                command.Parameters.Add(param);
+                //OleDbParameter param1 = new OleDbParameter("@mBirthdayDate", OleDbType.DBDate);
+                //param.Value = m.Birthday_Date;
+                //command.Parameters.Add(param1);
+                command.Parameters.Add("@mBirthdayDate", m.Birthday_Date);
                 command.Parameters.Add(new OleDbParameter("@id", m.Id));
             }
         }
@@ -92,8 +112,9 @@ namespace ViewModel
             Membership member = entity as Membership;
             if (member != null)
             {
-                updated.Add(new ChangeEntity(this.CreateUpdatedSQL, entity));
                 updated.Add(new ChangeEntity(base.CreateUpdatedSQL, entity));
+                updated.Add(new ChangeEntity(this.CreateUpdatedSQL, entity));
+
             }
         }
 

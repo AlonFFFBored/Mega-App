@@ -8,11 +8,11 @@ using Library_Mega_App;
 using Model;
 namespace ViewModel
 {
-    internal class OrderItems_DB : BaseDB
+    public class OrderItems_DB : BaseDB
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new OrderItems();
         }
         public OrderItems_List SelectAll()
         {
@@ -25,6 +25,8 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             OrderItems o = entity as OrderItems;
+            o.Order_Id = Order_DB.SelectById(int.Parse(reader["Order_ID"].ToString()));
+            o.Product_Id = Products_DB.SelectById(int.Parse(reader["Product_ID"].ToString()));
             o.Amount = int.Parse(reader["amount"].ToString());
             base.CreateModel(entity);
             return entity;
@@ -68,18 +70,10 @@ namespace ViewModel
             OrderItems oi = entity as OrderItems;
             if (oi != null)
             {
-                string sqlStr = $"UPDATE Videos SET OrderItemsAmount=@oiAmount,OrderItems=@oiId,Product=@pId WHERE ID=@id";
+                string sqlStr = $"UPDATE OrderItems SET Amount=@oiAmount,Order_ID=@oiId,Product_ID=@pId WHERE ID=@id";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@oiAmount", oi.Amount));
-                command.Parameters.Add(new OleDbParameter("@oiId", oi.Order_Id.User_Id));
-                command.Parameters.Add(new OleDbParameter("@oiId", oi.Order_Id.Order_date));
-                command.Parameters.Add(new OleDbParameter("@oiId", oi.Order_Id.Status));
                 command.Parameters.Add(new OleDbParameter("@oiId", oi.Order_Id.Id));
-                command.Parameters.Add(new OleDbParameter("@pId", oi.Product_Id.Product_Name));
-                command.Parameters.Add(new OleDbParameter("@pId", oi.Product_Id.Product_Description));
-                command.Parameters.Add(new OleDbParameter("@pId", oi.Product_Id.Price));
-                command.Parameters.Add(new OleDbParameter("@pId", oi.Product_Id.Amount_In_Stock));
-                command.Parameters.Add(new OleDbParameter("@pId", oi.Product_Id.Picture));
                 command.Parameters.Add(new OleDbParameter("@pId", oi.Product_Id.Id));
                 command.Parameters.Add(new OleDbParameter("@id", oi.Id));
             }

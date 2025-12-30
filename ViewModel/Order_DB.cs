@@ -13,12 +13,12 @@ namespace ViewModel
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new Orders();
         }
         public Orders_List SelectAll()
         {
-            command.CommandText = $"SELECT Orders.[User ID], Orders.Oreder_Date, Orders.Status, Users.Email, Users.Username, Users.ID, Users.Passkey, Users.Role\r\nFROM" +
-                $"  (Users INNER JOIN\r\n" +
+            command.CommandText = $"SELECT Orders.[User ID], Orders.Oreder_Date, Orders.Status, Users.Email, Users.Username, Users.ID, Users.Passkey, Users.Role FROM" +
+                $"  (Users INNER JOIN" +
                 $" Orders ON Users.ID = Orders.[User ID])";
 
           Orders_List orders_list = new Orders_List(base.Select());
@@ -27,7 +27,8 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             Orders o = entity as Orders;
-            o.Order_date = DateTime.Parse(reader["order_date"].ToString());
+            o.User_Id= UsersDB.SelectById(int.Parse(reader["User ID"].ToString()));
+            o.Order_date = DateTime.Parse(reader["oreder_date"].ToString());
             o.Status = (Status)(int.Parse(reader["status"].ToString()));
             base.CreateModel(entity);
             return entity;
@@ -58,10 +59,11 @@ namespace ViewModel
             Orders o = entity as Orders;
             if (o != null)
             {
-                string sqlStr = $"Insert INTO OrdersTbl (User_Id,Order_Date,Status) VALUES (@oUserId,@oOrderDate,@oStatus)";
+                string sqlStr = $"Insert INTO Orders (User_Id,Oreder_Date,Status) VALUES (@oUserId,@oOrderDate,@oStatus)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@oUserId", o.User_Id.Id));
-                command.Parameters.Add(new OleDbParameter("@oOrderDate", o.Order_date));
+                OleDbParameter dataparam222 = new OleDbParameter("@oDate", o.Order_date);
+                dataparam222.Value = DateOnly.FromDateTime(o.Order_date);
                 command.Parameters.Add(new OleDbParameter("@oStatus", o.Status));
             }
         }
@@ -71,14 +73,11 @@ namespace ViewModel
             Orders o = entity as Orders;
             if (o != null)
             {
-                string sqlStr = $"UPDATE Videos SET User=@uId,OrderDate=@oDate,Orderstatus=@oStatus WHERE ID=@id";
+                string sqlStr = $"UPDATE Orders SET User_ID=@uId,Oreder_Date=@oDate,status=@oStatus WHERE ID=@id";
                 command.CommandText = sqlStr;
-                command.Parameters.Add(new OleDbParameter("@uId", o.User_Id.Username));
-                command.Parameters.Add(new OleDbParameter("@uId", o.User_Id.Passkey));
-                command.Parameters.Add(new OleDbParameter("@uId", o.User_Id.Email));
-                command.Parameters.Add(new OleDbParameter("@uId", o.User_Id.Role));
                 command.Parameters.Add(new OleDbParameter("@uId", o.User_Id.Id));
-                command.Parameters.Add(new OleDbParameter("@oDate", o.Order_date));
+                OleDbParameter dataparam22 =new OleDbParameter("@oDate", o.Order_date);
+                dataparam22.Value= DateOnly.FromDateTime(o.Order_date);
                 command.Parameters.Add(new OleDbParameter("@oStatus", o.Status));
                 command.Parameters.Add(new OleDbParameter("@id", o.Id));
             }

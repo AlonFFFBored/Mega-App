@@ -13,5 +13,10 @@ namespace Model
 
         public Products Product_Name_Id { get => product_name_id; set => product_name_id = value; }
         public Categories Category_Id { get => category_id; set => category_id = value; }
+
+        public override string ToString()
+        {
+            return $"ProductCategory: Product = {Product_Name_Id?.Id}, Category = {Category_Id?.Id}";
+        }
     }
 }

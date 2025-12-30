@@ -15,12 +15,12 @@ namespace ViewModel
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new Favorites();
         }
         public Favorites_List SelectAll()
         {
-            command.CommandText = $"SELECT Favorites.User_ID, Favorites.Product_ID, Users.ID, Users.Username, Users.Passkey, Users.Email, Users.Role\r\nFROM" +
-                $" (Users INNER JOIN\r\n" +
+            command.CommandText = $"SELECT Favorites.User_ID, Favorites.Product_ID, Users.ID, Users.Username, Users.Passkey, Users.Email, Users.Role FROM" +
+                $" (Users INNER JOIN " +
                 $" Favorites ON Users.ID = Favorites.User_ID)";
 
             Favorites_List favorites_list = new Favorites_List(base.Select());
@@ -29,6 +29,8 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             Favorites f = entity as Favorites;
+            f.User_id = UsersDB.SelectById(int.Parse(reader["User_ID"].ToString()));
+            f.Product_id = Products_DB.SelectById(int.Parse(reader["Product_ID"].ToString()));
             base.CreateModel(entity);
             return entity;
         }
@@ -59,10 +61,10 @@ namespace ViewModel
             Favorites f = entity as Favorites;
             if (f != null)
             {
-                string sqlStr = $"Insert INTO Favorites (Category) VALUES (@cCategory)";
+                string sqlStr = $"Insert INTO Favorites (User_ID,Product_ID) VALUES (@pUser_ID,@pProduct_ID)";
                 command.CommandText = sqlStr;
-                command.Parameters.Add(new OleDbParameter("@cCategory", f.Product_id.Id));
-                command.Parameters.Add(new OleDbParameter("@cCategory", f.User_id.Id));
+                command.Parameters.Add(new OleDbParameter("@pUser_ID", f.User_id.Id));
+                command.Parameters.Add(new OleDbParameter("@pProduct_ID", f.Product_id.Id));
 
             }
         }
@@ -72,18 +74,10 @@ namespace ViewModel
             Favorites f = entity as Favorites;
             if (f != null)
             {
-                string sqlStr = $"UPDATE Favorites SET User=@uId,Product=@pId WHERE ID=@id";
+                string sqlStr = $"UPDATE Favorites SET User_ID=@uId,Product_ID=@pId WHERE ID=@id";
                 command.CommandText = sqlStr;
-                command.Parameters.Add(new OleDbParameter("@uId", f.User_id.Username));
-                command.Parameters.Add(new OleDbParameter("@uId", f.User_id.Passkey));
-                command.Parameters.Add(new OleDbParameter("@uId", f.User_id.Email));
-                command.Parameters.Add(new OleDbParameter("@uId", f.User_id.Role));
+
                 command.Parameters.Add(new OleDbParameter("@uId", f.User_id.Id));
-                command.Parameters.Add(new OleDbParameter("@pId", f.Product_id.Product_Name));
-                command.Parameters.Add(new OleDbParameter("@pId", f.Product_id.Product_Description));
-                command.Parameters.Add(new OleDbParameter("@pId", f.Product_id.Price));
-                command.Parameters.Add(new OleDbParameter("@pId", f.Product_id.Amount_In_Stock));
-                command.Parameters.Add(new OleDbParameter("@pId", f.Product_id.Picture));
                 command.Parameters.Add(new OleDbParameter("@pId", f.Product_id.Id));
                 command.Parameters.Add(new OleDbParameter("@id", f.Id));
             }

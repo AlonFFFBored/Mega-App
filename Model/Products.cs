@@ -18,6 +18,11 @@ namespace Model
         public double Price { get => price; set => price = value; }
         public string Picture { get => picture; set => picture = value; }
         public int Amount_In_Stock { get => amount_in_stock; set => amount_in_stock = value; }
+
+        public override string ToString()
+        {
+            return $"Product: Id = {Id}, Name = {Product_Name}, Price = {Price}, In Stock = {Amount_In_Stock}";
+        }
     }
 
 }

@@ -11,5 +11,10 @@ namespace Model
         private int id;
 
         public int Id { get => id; set => id = value; }
+
+        public override string ToString()
+        {
+            return $"ID: {id}, ";
+        }
     }
 }

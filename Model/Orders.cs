@@ -24,5 +24,10 @@ namespace Model
         public DateTime Order_date { get => order_date; set => order_date = value; }
         public Status Status { get => status; set => status = value; }
         public Users User_Id { get => user_id; set => user_id = value; }
+
+        public override string ToString()
+        {
+            return $"Order: Id = {Id}, Date = {Order_date:yyyy-MM-dd}, Status = {Status}, User = {User_Id?.Id}";
+        }
     }
 }

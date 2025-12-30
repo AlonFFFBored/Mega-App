@@ -15,5 +15,10 @@ namespace Model
         public string Video_Name { get => video_name; set => video_name = value; }
         public string Video_Link { get => video_link; set => video_link = value; }
         public Products Product_Id { get => product_id; set => product_id = value; }
+
+        public override string ToString()
+        {
+            return $"Video: Id = {Id}, Name = {Video_Name}, Link = {Video_Link}, Product = {Product_Id?.Id}";
+        }
     }
 }

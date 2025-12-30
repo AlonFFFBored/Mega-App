@@ -84,7 +84,7 @@ namespace Library_Mega_App
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message + "\nSQL:" + command.CommandText);
+                throw new Exception(e.Message + "\n SQL:" + command.CommandText);
             }
             finally
             {
@@ -192,7 +192,7 @@ namespace Library_Mega_App
             catch (Exception ex)
             {
                 trans.Rollback();
-                System.Diagnostics.Debug.WriteLine(ex.Message + "\n SQL:" + command.CommandText);
+                //throw new Exception(ex.Message + "\n SQL:" + command.CommandText);
             }
             finally
             {

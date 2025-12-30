@@ -12,11 +12,11 @@ namespace ViewModel
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new Videos();
         }
         public Videos_List SelectAll()
         {
-            command.CommandText = $"SELECT * FROM Favorites";
+            command.CommandText = $"SELECT * FROM Videos";
 
             Videos_List videos_list = new Videos_List(base.Select());
             return videos_list;
@@ -24,8 +24,9 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             Videos v = entity as Videos;
-            v.Video_Link = reader["video_link"].ToString();
+            v.Video_Link = reader["Link"].ToString();
             v.Video_Name = reader["video_name"].ToString();
+            v.Product_Id = Products_DB.SelectById(int.Parse(reader["Product ID"].ToString()));
             base.CreateModel(entity);
             return entity;
         }
@@ -53,7 +54,7 @@ namespace ViewModel
             Videos v = entity as Videos;
             if (v != null)
             {
-                string sqlStr = $"Insert INTO VideosTbl (Video_Name,Link,Product_ID) VALUES (@vVideoName,@vVideoLink,@vProductID)";
+                string sqlStr = $"Insert INTO Video (Video_Name,Link,Product_ID) VALUES (@vVideoName,@vVideoLink,@vProductID)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@vVideoName", v.Video_Name));
                 command.Parameters.Add(new OleDbParameter("@vVideoLink", v.Video_Link));
@@ -66,15 +67,10 @@ namespace ViewModel
             Videos v = entity as Videos;
             if (v != null)
             {
-                string sqlStr = $"UPDATE Videos SET VideoName=@vName,VideoLink=@vLink,ProductId=@pid WHERE ID=@id";
+                string sqlStr = $"UPDATE Videos SET Video_Name=@vName,Link=@vLink,[Product Id]=@pid WHERE ID=@id";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@cName", v.Video_Name));
                 command.Parameters.Add(new OleDbParameter("@vLink", v.Video_Link));
-                command.Parameters.Add(new OleDbParameter("@pId",v.Product_Id.Product_Name));
-                command.Parameters.Add(new OleDbParameter("@pId", v.Product_Id.Product_Description));
-                command.Parameters.Add(new OleDbParameter("@pId", v.Product_Id.Amount_In_Stock));
-                command.Parameters.Add(new OleDbParameter("@pId", v.Product_Id.Price));
-                command.Parameters.Add(new OleDbParameter("@pId", v.Product_Id.Picture));
                 command.Parameters.Add(new OleDbParameter("@pId", v.Product_Id.Id));
                 command.Parameters.Add(new OleDbParameter("@id", v.Id));
             }

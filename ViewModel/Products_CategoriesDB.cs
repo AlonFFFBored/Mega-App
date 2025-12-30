@@ -12,11 +12,11 @@ namespace ViewModel
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new Products_Categories();
         }
         public Products_Categories_List SelectAll()
         {
-            command.CommandText = $"SELECT * FROM Product_Categories";
+            command.CommandText = $"SELECT * FROM [Products-Categories]";
 
             Products_Categories_List products_categories_list = new Products_Categories_List(base.Select());
             return products_categories_list;
@@ -24,6 +24,8 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             Products_Categories pc = entity as Products_Categories;
+            pc.Product_Name_Id = Products_DB.SelectById(int.Parse(reader["Product_Name_ID"].ToString()));
+            pc.Category_Id = CategoriesDB.SelectById(int.Parse(reader["Category_ID"].ToString()));
             base.CreateModel(entity);
             return entity;
         }
@@ -41,7 +43,7 @@ namespace ViewModel
             Products_Categories pc = entity as Products_Categories;
             if (pc != null)
             {
-                string sqlStr = $"DELETE FROM Products_Categories where id=@pcid";
+                string sqlStr = $"DELETE FROM Products-Categories where id=@pcid";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@pcid", pc.Id));
             }
@@ -64,15 +66,9 @@ namespace ViewModel
             Products_Categories pc = entity as Products_Categories;
             if (pc != null)
             {
-                string sqlStr = $"UPDATE Videos SET ProductNameId=@pcId,Category=@cid WHERE ID=@id";
+                string sqlStr = $"UPDATE [Products-Categories] SET Product_Name_Id=@pcId,Category_ID=@cid WHERE ID=@id";
                 command.CommandText = sqlStr;
-                command.Parameters.Add(new OleDbParameter("@pcId", pc.Product_Name_Id.Product_Name));
-                command.Parameters.Add(new OleDbParameter("@pcId", pc.Product_Name_Id.Product_Description));
-                command.Parameters.Add(new OleDbParameter("@pcId", pc.Product_Name_Id.Amount_In_Stock));
-                command.Parameters.Add(new OleDbParameter("@pcId", pc.Product_Name_Id.Price));
-                command.Parameters.Add(new OleDbParameter("@pcId", pc.Product_Name_Id.Picture));
                 command.Parameters.Add(new OleDbParameter("@pcId", pc.Product_Name_Id.Id));
-                command.Parameters.Add(new OleDbParameter("@cId", pc.Category_Id.Category));
                 command.Parameters.Add(new OleDbParameter("@cId", pc.Category_Id.Id));
                 command.Parameters.Add(new OleDbParameter("@id", pc.Id));
             }

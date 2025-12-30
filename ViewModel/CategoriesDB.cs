@@ -12,7 +12,7 @@ namespace ViewModel
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new Categories();
         }
 
         public Categories_List SelectAll()
@@ -25,7 +25,7 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             Categories c = entity as Categories;
-            c.Category = reader["areaName"].ToString();
+            c.Category = reader["Category"].ToString();
             base.CreateModel(entity);
             return entity;
         }
@@ -56,7 +56,7 @@ namespace ViewModel
             Categories c = entity as Categories;
             if (c != null)
             {
-                string sqlStr = $"Insert INTO CategoryTbl (Category) VALUES (@cCategory)";
+                string sqlStr = $"Insert INTO Categories (Category) VALUES (@cCategory)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@cCategory", c.Category));
             }
@@ -67,7 +67,7 @@ namespace ViewModel
             Categories c = entity as Categories;
             if (c != null)
             {
-                string sqlStr = $"UPDATE Videos SET CategoryName=@cName WHERE ID=@id";
+                string sqlStr = $"UPDATE Categories SET Category=@cName WHERE ID=@id";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@cName", c.Category));
                 command.Parameters.Add(new OleDbParameter("@id", c.Id));

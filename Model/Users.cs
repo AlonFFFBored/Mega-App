@@ -24,5 +24,10 @@ namespace Model
         public string Email { get => email; set => email = value; }
         public string Passkey { get => passkey; set => passkey = value; }
         public Role Role { get => role; set => role = value; }
+
+        public override string ToString()
+        {
+            return $"User: Id = {Id}, Username = {Username}, Email = {Email}, Role = {Role}";
+        }
     }
 }

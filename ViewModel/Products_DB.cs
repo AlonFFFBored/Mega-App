@@ -12,11 +12,11 @@ namespace ViewModel
     {
         public override BaseEntity NewEntity()
         {
-            throw new NotImplementedException();
+            return new Products();
         }
         public Products_List SelectAll()
         {
-            command.CommandText = $"SELECT * FROM Favorites";
+            command.CommandText = $"SELECT * FROM Products";
 
             Products_List products_list = new Products_List(base.Select());
             return products_list;
@@ -24,8 +24,8 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             Products p = entity as Products;
-            p.Product_Name = reader["product_name"].ToString();
-            p.Product_Description = reader["product_description"].ToString();
+            p.Product_Name = reader["Product_Name"].ToString();
+            p.Product_Description = reader["description"].ToString();
             p.Picture = reader["picture"].ToString();
             p.Price= double.Parse(reader["price"].ToString());
             p.Amount_In_Stock = int.Parse(reader["amount_in_stock"].ToString());
@@ -57,7 +57,7 @@ namespace ViewModel
             Products p = entity as Products;
             if (p != null)
             {
-                string sqlStr = $"Insert INTO ProductsTbl (Product_Name,Description,Price,Picture,Amount_In_Stock) VALUES (@pProductName,@pProductDectription,@pProductPrice,@pProductPicture,@pProductAmountInStock)";
+                string sqlStr = $"Insert INTO Products (Product_Name,Description,Price,Picture,Amount_In_Stock) VALUES (@pProductName,@pProductDectription,@pProductPrice,@pProductPicture,@pProductAmountInStock)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@pProductName", p.Product_Name));
                 command.Parameters.Add(new OleDbParameter("@pProductDescription", p.Product_Description));
@@ -72,7 +72,7 @@ namespace ViewModel
             Products p = entity as Products;
             if (p != null)
             {
-                string sqlStr = $"UPDATE Videos SET ProductName=@pName,ProductDescription=@pDescription,ProductAmountInStock=@pAmountInStock,ProductPric@pPrice,ProductPicture=@pPicture WHERE ID=@id";
+                string sqlStr = $"UPDATE Products SET Product_Name=@pName,Description=@pDescription,Amount_In_Stock=@pAmountInStock,Price=@pPrice,Picture=@pPicture WHERE ID=@id";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@pName", p.Product_Name));
                 command.Parameters.Add(new OleDbParameter("@pDescription", p.Product_Description));

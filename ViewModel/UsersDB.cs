@@ -56,12 +56,12 @@ namespace ViewModel
             Users u = entity as Users;
             if (u != null)
             {
-                string sqlStr = $"Insert INTO UsersTbl (Username,Email,Passkey,Role) VALUES (@uUsername,@uEmail,@Passkey,@uRole)";
+                string sqlStr = $"Insert INTO Users (Username,Email,Passkey,Role) VALUES (@uUsername,@uEmail,@Passkey,@uRole)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@uUsername", u.Username));
                 command.Parameters.Add(new OleDbParameter("@uEmail", u.Email));
                 command.Parameters.Add(new OleDbParameter("@uPasskey", u.Passkey));
-                command.Parameters.Add(new OleDbParameter("@uRole", u.Role));
+                command.Parameters.Add(new OleDbParameter("@uRole", (int)u.Role));
             }
         }
 
@@ -70,7 +70,7 @@ namespace ViewModel
             Users u = entity as Users;
             if (u != null)
             {
-                string sqlStr = $"UPDATE Videos SET Username=@uName,Passkey=@uPasskey ,UsernameRole=@uRole ,UsernameEmail=@uEmail  WHERE ID=@id";
+                string sqlStr = $"UPDATE Users SET Username=@uName,Passkey=@uPasskey ,Role=@uRole ,Email=@uEmail  WHERE ID=@id";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@uName", u.Username));
                 command.Parameters.Add(new OleDbParameter("@uPasskey", u.Passkey));
