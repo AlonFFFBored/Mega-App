@@ -192,7 +192,7 @@ namespace Library_Mega_App
             catch (Exception ex)
             {
                 trans.Rollback();
-                //throw new Exception(ex.Message + "\n SQL:" + command.CommandText);
+                throw new Exception(ex.Message + "\n SQL:" + command.CommandText);
             }
             finally
             {

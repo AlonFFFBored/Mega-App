@@ -54,7 +54,7 @@ namespace ViewModel
             Videos v = entity as Videos;
             if (v != null)
             {
-                string sqlStr = $"Insert INTO Video (Video_Name,Link,Product_ID) VALUES (@vVideoName,@vVideoLink,@vProductID)";
+                string sqlStr = $"Insert INTO Videos (Video_Name,Link,[Product ID]) VALUES (@vVideoName,@vVideoLink,@vProductID)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@vVideoName", v.Video_Name));
                 command.Parameters.Add(new OleDbParameter("@vVideoLink", v.Video_Link));

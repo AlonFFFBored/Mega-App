@@ -59,12 +59,19 @@ namespace ViewModel
             Orders o = entity as Orders;
             if (o != null)
             {
-                string sqlStr = $"Insert INTO Orders (User_Id,Oreder_Date,Status) VALUES (@oUserId,@oOrderDate,@oStatus)";
-                command.CommandText = sqlStr;
-                command.Parameters.Add(new OleDbParameter("@oUserId", o.User_Id.Id));
-                OleDbParameter dataparam222 = new OleDbParameter("@oDate", o.Order_date);
-                dataparam222.Value = DateOnly.FromDateTime(o.Order_date);
-                command.Parameters.Add(new OleDbParameter("@oStatus", o.Status));
+                string sqlStr = "INSERT INTO Orders ([User ID], Oreder_Date, [Status]) VALUES (@oUserId, @oOrderDate, @oStatus)";
+                cmd.CommandText = sqlStr;
+
+                // 1. User ID - Integer
+                cmd.Parameters.Add(new OleDbParameter("@oUserId", OleDbType.Integer)).Value = o.User_Id.Id;
+
+                // 2. Order Date - EXPLICIT DATE TYPE
+                OleDbParameter dateParam = new OleDbParameter("@oOrderDate", OleDbType.Date);
+                dateParam.Value = o.Order_date;
+                cmd.Parameters.Add(dateParam);
+
+                // 3. Status - Integer (Cast Enum to int)
+                cmd.Parameters.Add(new OleDbParameter("@oStatus", OleDbType.Integer)).Value = (int)o.Status;
             }
         }
 
@@ -73,12 +80,13 @@ namespace ViewModel
             Orders o = entity as Orders;
             if (o != null)
             {
-                string sqlStr = $"UPDATE Orders SET User_ID=@uId,Oreder_Date=@oDate,status=@oStatus WHERE ID=@id";
+                string sqlStr = $"UPDATE Orders SET [User ID]=@uId,Oreder_Date=@oDate,status=@oStatus WHERE ID=@id";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@uId", o.User_Id.Id));
                 OleDbParameter dataparam22 =new OleDbParameter("@oDate", o.Order_date);
-                dataparam22.Value= DateOnly.FromDateTime(o.Order_date);
-                command.Parameters.Add(new OleDbParameter("@oStatus", o.Status));
+                dataparam22.Value= o.Order_date;
+                cmd.Parameters.Add(dataparam22);
+                command.Parameters.Add(new OleDbParameter("@oStatus",(int)o.Status));
                 command.Parameters.Add(new OleDbParameter("@id", o.Id));
             }
         }

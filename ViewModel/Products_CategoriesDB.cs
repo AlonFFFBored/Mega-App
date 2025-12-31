@@ -43,7 +43,7 @@ namespace ViewModel
             Products_Categories pc = entity as Products_Categories;
             if (pc != null)
             {
-                string sqlStr = $"DELETE FROM Products-Categories where id=@pcid";
+                string sqlStr = $"DELETE FROM [Products-Categories] where id=@pcid";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@pcid", pc.Id));
             }
@@ -54,10 +54,11 @@ namespace ViewModel
             Products_Categories pc = entity as Products_Categories;
             if (pc != null)
             {
-                string sqlStr = $"Insert INTO [Products-Categories] (Pro) VALUES (@cCategory)";
+                string sqlStr = $"Insert INTO [Products-Categories] (Product_Name_ID,Category_ID) VALUES (" +
+                    $"@pId,@cId)";
                 command.CommandText = sqlStr;
-                command.Parameters.Add(new OleDbParameter("@cCategory", pc.Product_Name_Id.Id));
-                command.Parameters.Add(new OleDbParameter("@cCategory", pc.Category_Id.Id));
+                command.Parameters.Add(new OleDbParameter("@pId", pc.Product_Name_Id.Id));
+                command.Parameters.Add(new OleDbParameter("@cId", pc.Category_Id.Id));
             }
         }
 

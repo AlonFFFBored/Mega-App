@@ -28,7 +28,7 @@ namespace ViewModel
         {
             Membership m = entity as Membership;
             m.Join_Date = DateTime.Parse(reader["join_date"].ToString());
-          
+
             m.Birthday_Date = DateTime.Parse(reader["birthday_day"].ToString());
             base.CreateModel(entity);
             return entity;
@@ -53,16 +53,16 @@ namespace ViewModel
                 command.Parameters.Add(new OleDbParameter("@mid", m.Id));
             }
         }
-        
 
-            public override void Delete(BaseEntity entity)
+
+        public override void Delete(BaseEntity entity)
         {
             BaseEntity reqEntity = this.NewEntity();
-            if (entity !=  null & entity.GetType() == reqEntity.GetType())
-                {
+            if (entity != null & entity.GetType() == reqEntity.GetType())
+            {
                 deleted.Add(new ChangeEntity(base.CreateDeletedSQL, entity));
                 deleted.Add(new ChangeEntity(this.CreateDeletedSQL, entity));
-                }
+            }
         }
 
         public override void Insert(BaseEntity entity)
@@ -91,12 +91,12 @@ namespace ViewModel
 
         protected override void CreateUpdatedSQL(BaseEntity entity, OleDbCommand cmd)
         {
-            Membership m= entity as Membership;
+            Membership m = entity as Membership;
             if (m != null)
             {
                 string sqlStr = $"UPDATE Membership SET Join_Date=@mJoinDate,Birthday_Day=@mBirthdayDate WHERE ID=@id";
                 command.CommandText = sqlStr;
-                OleDbParameter param=new OleDbParameter("@mJoinDate",OleDbType.DBDate);
+                OleDbParameter param = new OleDbParameter("@mJoinDate", OleDbType.DBDate);
                 param.Value = m.Join_Date;
                 command.Parameters.Add(param);
                 //OleDbParameter param1 = new OleDbParameter("@mBirthdayDate", OleDbType.DBDate);
@@ -112,8 +112,8 @@ namespace ViewModel
             Membership member = entity as Membership;
             if (member != null)
             {
-                updated.Add(new ChangeEntity(base.CreateUpdatedSQL, entity));
                 updated.Add(new ChangeEntity(this.CreateUpdatedSQL, entity));
+                updated.Add(new ChangeEntity(base.CreateUpdatedSQL, entity));
 
             }
         }
