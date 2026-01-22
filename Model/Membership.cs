@@ -8,8 +8,8 @@ namespace Model
 {
     public class Membership:Users
     {
-        private DateTime join_date;
-        private DateTime birthday_date;
+        private DateTime join_date = DateTime.MinValue;
+        private DateTime birthday_date = DateTime.MinValue;
 
         public DateTime Join_Date { get => join_date; set => join_date = value; }
         public DateTime Birthday_Date { get => birthday_date; set => birthday_date = value; }

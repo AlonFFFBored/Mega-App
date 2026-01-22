@@ -51,7 +51,7 @@ namespace Library_Mega_App
             catch (Exception e)
             {
 
-                System.Diagnostics.Debug.WriteLine(
+                throw new Exception(
                     e.Message + "\nSQL:" + command.CommandText);
             }
             finally

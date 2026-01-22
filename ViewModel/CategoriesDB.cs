@@ -17,7 +17,7 @@ namespace ViewModel
 
         public Categories_List SelectAll()
         {
-            command.CommandText = $"SELECT * FROM Categories";
+            command.CommandText = $"SELECT * FROM Categories Order By Categories.Id";
 
             Categories_List categories_list = new Categories_List(base.Select());
             return categories_list;

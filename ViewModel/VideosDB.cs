@@ -16,7 +16,7 @@ namespace ViewModel
         }
         public Videos_List SelectAll()
         {
-            command.CommandText = $"SELECT * FROM Videos";
+            command.CommandText = $"SELECT * FROM Videos Order By Videos.Id";
 
             Videos_List videos_list = new Videos_List(base.Select());
             return videos_list;

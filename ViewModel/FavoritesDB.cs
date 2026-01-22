@@ -21,7 +21,7 @@ namespace ViewModel
         {
             command.CommandText = $"SELECT Favorites.User_ID, Favorites.Product_ID, Users.ID, Users.Username, Users.Passkey, Users.Email, Users.Role FROM" +
                 $" (Users INNER JOIN " +
-                $" Favorites ON Users.ID = Favorites.User_ID)";
+                $" Favorites ON Users.ID = Favorites.User_ID) Order By Favorites.Id";
 
             Favorites_List favorites_list = new Favorites_List(base.Select());
             return favorites_list;

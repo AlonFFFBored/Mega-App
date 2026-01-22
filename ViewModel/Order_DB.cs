@@ -19,7 +19,7 @@ namespace ViewModel
         {
             command.CommandText = $"SELECT Orders.[User ID], Orders.Oreder_Date, Orders.Status, Users.Email, Users.Username, Users.ID, Users.Passkey, Users.Role FROM" +
                 $"  (Users INNER JOIN" +
-                $" Orders ON Users.ID = Orders.[User ID])";
+                $" Orders ON Users.ID = Orders.[User ID]) Order By Orders.Id";
 
           Orders_List orders_list = new Orders_List(base.Select());
             return orders_list;
@@ -62,8 +62,9 @@ namespace ViewModel
                 string sqlStr = $"Insert INTO Orders (User_Id,Oreder_Date,Status) VALUES (@oUserId,@oOrderDate,@oStatus)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@oUserId", o.User_Id.Id));
-                OleDbParameter dataparam222 = new OleDbParameter("@oDate", o.Order_date);
-                dataparam222.Value = DateOnly.FromDateTime(o.Order_date);
+                OleDbParameter param1 = new OleDbParameter("@oDate", OleDbType.DBDate);
+                param1.Value = o.Order_date;
+                command.Parameters.Add(param1);
                 command.Parameters.Add(new OleDbParameter("@oStatus", o.Status));
             }
         }
@@ -76,8 +77,9 @@ namespace ViewModel
                 string sqlStr = $"UPDATE Orders SET User_ID=@uId,Oreder_Date=@oDate,status=@oStatus WHERE ID=@id";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@uId", o.User_Id.Id));
-                OleDbParameter dataparam22 =new OleDbParameter("@oDate", o.Order_date);
-                dataparam22.Value= DateOnly.FromDateTime(o.Order_date);
+                OleDbParameter param1 = new OleDbParameter("@oDate", OleDbType.DBDate);
+                param1.Value = o.Order_date;
+                command.Parameters.Add(param1);
                 command.Parameters.Add(new OleDbParameter("@oStatus", o.Status));
                 command.Parameters.Add(new OleDbParameter("@id", o.Id));
             }

@@ -16,7 +16,7 @@ namespace ViewModel
         }
         public Users_List SelectAll()
         {
-            command.CommandText = $"SELECT * FROM Users";
+            command.CommandText = $"SELECT * FROM Users Order By Users.Id";
 
             Users_List users_list = new Users_List(base.Select());
             return users_list;

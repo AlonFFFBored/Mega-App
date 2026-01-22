@@ -16,7 +16,7 @@ namespace ViewModel
         }
         public Products_Categories_List SelectAll()
         {
-            command.CommandText = $"SELECT * FROM [Products-Categories]";
+            command.CommandText = $"SELECT * FROM [Products-Categories] Order By [Products-Categories].Id";
 
             Products_Categories_List products_categories_list = new Products_Categories_List(base.Select());
             return products_categories_list;

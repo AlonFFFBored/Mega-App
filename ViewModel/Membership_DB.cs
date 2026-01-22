@@ -19,7 +19,7 @@ namespace ViewModel
             command.CommandText = $"SELECT Membership.Join_Date, Membership.Birthday_Day, Users.ID, " +
                 $" Users.Username, Users.Email, Users.Passkey, Users.Role FROM " +
                 $" (Users INNER JOIN " +
-                $" Membership ON Users.ID = Membership.ID)";
+                $" Membership ON Users.ID = Membership.ID) Order By Membership.Id";
 
             Membership_List membership_list = new Membership_List(base.Select());
             return membership_list;
@@ -60,8 +60,8 @@ namespace ViewModel
             BaseEntity reqEntity = this.NewEntity();
             if (entity !=  null & entity.GetType() == reqEntity.GetType())
                 {
-                deleted.Add(new ChangeEntity(base.CreateDeletedSQL, entity));
                 deleted.Add(new ChangeEntity(this.CreateDeletedSQL, entity));
+                deleted.Add(new ChangeEntity(base.CreateDeletedSQL, entity));
                 }
         }
 
@@ -83,9 +83,12 @@ namespace ViewModel
                 string sqlStr = $"Insert INTO Membership (ID,Join_Date,Birthday_Day) VALUES (@mID,@mJoin_Date,@mBirthday_Date)";
                 command.CommandText = sqlStr;
                 command.Parameters.Add(new OleDbParameter("@mID", m.Id));
-                command.Parameters.Add(new OleDbParameter("@mBirthday_Date", m.Birthday_Date));
-                command.Parameters.Add(new OleDbParameter("@mJoin_Date", m.Join_Date));
-
+                OleDbParameter param = new OleDbParameter("@mJoinDate", OleDbType.DBDate);
+                param.Value = m.Join_Date;
+                command.Parameters.Add(param);
+                OleDbParameter param1 = new OleDbParameter("@mBirthday_Date", OleDbType.DBDate);
+                param1.Value = m.Birthday_Date;
+                command.Parameters.Add(param1);
             }
         }
 
@@ -99,10 +102,9 @@ namespace ViewModel
                 OleDbParameter param=new OleDbParameter("@mJoinDate",OleDbType.DBDate);
                 param.Value = m.Join_Date;
                 command.Parameters.Add(param);
-                //OleDbParameter param1 = new OleDbParameter("@mBirthdayDate", OleDbType.DBDate);
-                //param.Value = m.Birthday_Date;
-                //command.Parameters.Add(param1);
-                command.Parameters.Add("@mBirthdayDate", m.Birthday_Date);
+                OleDbParameter param1 = new OleDbParameter("@mBirthday_Date", OleDbType.DBDate);
+                param1.Value = m.Birthday_Date;
+                command.Parameters.Add(param1);
                 command.Parameters.Add(new OleDbParameter("@id", m.Id));
             }
         }
