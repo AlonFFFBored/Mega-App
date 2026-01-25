@@ -30,19 +30,9 @@ namespace Mega_App.Pages
         private async Task DoFunc()
         {
             ApiService api = new ApiService();
-            var data = await api.GetAllCategories();
+            int data = await api.AddCategory(new Categories() { Id=1, Category="" });
             string s = "";
-            if (data is System.Collections.IEnumerable list)
-            {
-                foreach (var d in data)
-                {
-                    s += d.ToString();
-                }
-            }
-            else
-            {
-                s = data.ToString();
-            }
+            s = data.ToString();
             Output.Text = s;
         }
 
