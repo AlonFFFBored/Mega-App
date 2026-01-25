@@ -33,8 +33,34 @@ namespace Client_support
         {
             try
             {
-                await client.PostAsJsonAsync<T>(endpoint, entity);
+                HttpResponseMessage result = await client.PostAsJsonAsync<T>(endpoint, entity);
+                return result.IsSuccessStatusCode != true ? 0 : 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public async Task<int> Update<T>(string endpoint, T entity) where T : BaseEntity
+        {
+            try
+            {
+                HttpResponseMessage result = await client.PutAsJsonAsync<T>(endpoint, entity);
+                return result.IsSuccessStatusCode != true ? 0 : 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<int> Delete<T>(string endpoint, int id) where T : BaseEntity
+        {
+            try
+            {
+                T result = await client.DeleteFromJsonAsync<T>((endpoint + $"/{id}"));
+                return result == null ? 0 : 1;
             }
             catch (Exception ex)
             {
