@@ -30,7 +30,12 @@ namespace Mega_App.Pages
         private async Task DoFunc()
         {
             ApiService api = new ApiService();
-            int data = await api.AddCategory(new Categories() { Id=1, Category="" });
+            int? data = await api.AddMember(
+                new Membership()
+                {
+                    Id = ,
+                }
+            );
             string s = "";
             s = data.ToString();
             Output.Text = s;

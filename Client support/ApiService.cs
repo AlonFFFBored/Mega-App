@@ -70,12 +70,12 @@ namespace Client_support
 
         public async Task<int> AddCategory(Categories categories)
         {
-            throw new NotImplementedException();
+            return await Insert<Categories>("api/Insert/InsertACategory", categories);
         }
 
         public async Task<int> AddUser(Users users)
         {
-            throw new NotImplementedException();
+            return await Insert<Users>("api/Insert/InsertAUser", users);
         }
 
         public async Task<int> DeleteCategory(int id)
@@ -155,7 +155,7 @@ namespace Client_support
 
         public async Task<int> AddFavorite(Favorites favorites)
         {
-            throw new NotImplementedException();
+            return await Insert<Favorites>("api/Insert/InsertAFavorite", favorites);
         }
 
         public async Task<int> UpdateFavorite(Favorites favorites)
