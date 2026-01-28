@@ -29,22 +29,61 @@ namespace Client_support
             }
         }
 
-        public async Task<int> AddCategory()
+        public async Task<int> Insert<T>(string endpoint, T entity) where T : BaseEntity
+        {
+            try
+            {
+                HttpResponseMessage result = await client.PostAsJsonAsync<T>(endpoint, entity);
+                return result.IsSuccessStatusCode != true ? 0 : 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<int> Update<T>(string endpoint, T entity) where T : BaseEntity
+        {
+            try
+            {
+                HttpResponseMessage result = await client.PutAsJsonAsync<T>(endpoint, entity);
+                return result.IsSuccessStatusCode != true ? 0 : 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<int> Delete<T>(string endpoint, int id) where T : BaseEntity
+        {
+            try
+            {
+                T result = await client.DeleteFromJsonAsync<T>((endpoint + $"/{id}"));
+                return result == null ? 0 : 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<int> AddCategory(Categories categories)
+        {
+            return await Insert<Categories>("api/Insert/InsertACategory", categories);
+        }
+
+        public async Task<int> AddUser(Users users)
+        {
+            return await Insert<Users>("api/Insert/InsertAUser", users);
+        }
+
+        public async Task<int> DeleteCategory(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<int> AddUser()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<int> DeleteCategory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<int> DeleteUser()
+        public async Task<int> DeleteUser(int id)
         {
             throw new NotImplementedException();
         }
@@ -84,12 +123,12 @@ namespace Client_support
             return await Select<Users_List>("api/Select/GetUsers");
         }
 
-        public async Task<int> UpdateCategory()
+        public async Task<int> UpdateCategory(Categories categories)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<int> UpdateUser()
+        public async Task<int> UpdateUser(Users users)
         {
             throw new NotImplementedException();
         }
@@ -99,112 +138,112 @@ namespace Client_support
             return await Select<Products_Categories_List>("api/Select/GetProducts-Categories");
         }
 
-        public Task<int> AddMember()
+        public async Task<int> AddMember(Membership membership)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateMember()
+        public async Task<int> UpdateMember(Membership membership)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteMember()
+        public async Task<int> DeleteMember(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddFavorite()
+        public async Task<int> AddFavorite(Favorites favorites)
+        {
+            return await Insert<Favorites>("api/Insert/InsertAFavorite", favorites);
+        }
+
+        public async Task<int> UpdateFavorite(Favorites favorites)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateFavorite()
+        public async Task<int> DeleteFavorite(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteFavorite()
+        public async Task<int> AddOrder(Orders orders)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddOrder()
+        public async Task<int> UpdateOrder(Orders orders)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateOrder()
+        public async Task<int> DeleteOrder(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteOrder()
+        public async Task<int> AddOrderItems(OrderItems orderItems)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddOrderItems()
+        public async Task<int> UpdateOrderItems(OrderItems orderItems)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateOrderItems()
+        public async Task<int> DeleteOrderItem(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteOrderItem()
+        public async Task<int> AddProduct(Products products)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddProduct()
+        public async Task<int> UpdateProduct(Products products)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateProduct()
+        public async Task<int> DeleteProduct(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteProduct()
+        public async Task<int> AddProduct_Category(Products_Categories products_Categories)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddProduct_Category()
+        public async Task<int> UpdateProduct_Category(Products_Categories products_Categories)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateProduct_Category()
+        public async Task<int> DeleteProduct_Category(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteProduct_Category()
+        public async Task<Videos_List> GetAllVideos()
+        {
+            return await Select<Videos_List>("api/Select/GetVideos");
+        }
+
+        public async Task<int> AddVideos(Videos videos)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Videos_List> GetAllVideos()
+        public async Task<int> UpdateVideos(Videos videos)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> AddVideos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> UpdateVideos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> DeleteVideos()
+        public async Task<int> DeleteVideos(int id)
         {
             throw new NotImplementedException();
         }

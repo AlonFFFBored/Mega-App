@@ -30,19 +30,14 @@ namespace Mega_App.Pages
         private async Task DoFunc()
         {
             ApiService api = new ApiService();
-            var data = await api.GetAllCategories();
-            string s = "";
-            if (data is System.Collections.IEnumerable list)
-            {
-                foreach (var d in data)
+            int? data = await api.AddMember(
+                new Membership()
                 {
-                    s += d.ToString();
+                    Id = ,
                 }
-            }
-            else
-            {
-                s = data.ToString();
-            }
+            );
+            string s = "";
+            s = data.ToString();
             Output.Text = s;
         }
 

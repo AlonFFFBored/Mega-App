@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "App With Server",
+    "Projects": [
+      {
+        "Path": "Server\\Server.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "Mega-App\\Mega-App.csproj",
+        "Action": "Start",
+        "DebugTarget": "Mega-App"
+      }
+    ]
+  }
+]
