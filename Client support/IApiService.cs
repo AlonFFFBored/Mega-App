@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Model;
 
@@ -9,76 +7,58 @@ namespace Client_support
 {
     public interface IApiService
     {
-        public Task<Categories_List> GetAllCategories();
+        // Categories
+        Task<Categories_List> GetAllCategories();
+        Task<int> AddCategory(Categories categories);
+        Task<int> UpdateCategory(Categories categories);
+        Task<int> DeleteCategory(int id);
 
-        public Task<int> AddCategory(Categories categories);
+        // Users
+        Task<Users_List> GetAllUsers();
+        Task<int> AddUser(Users users);
+        Task<int> UpdateUser(Users users);
+        Task<int> DeleteUser(int id);
 
-        public Task<int> UpdateCategory(Categories categories);
+        // Membership
+        Task<Membership_List> GetAllMembers();
+        Task<int> AddMember(Membership membership);
+        Task<int> UpdateMember(Membership membership);
+        Task<int> DeleteMember(int id);
 
-        public Task<int> DeleteCategory(int id);
+        // Favorites
+        Task<Favorites_List> GetAllFavorites();
+        Task<int> AddFavorite(Favorites favorites);
+        Task<int> UpdateFavorite(Favorites favorites);
+        Task<int> DeleteFavorite(int id);
 
-        public Task<Users_List> GetAllUsers();
+        // Orders
+        Task<Orders_List> GetAllOrders();
+        Task<int> AddOrder(Orders orders);
+        Task<int> UpdateOrder(Orders orders);
+        Task<int> DeleteOrder(int id);
 
-        public Task<int> AddUser(Users users);
+        // OrderItems
+        Task<OrderItems_List> GetAllOrderItems();
+        Task<int> AddOrderItems(OrderItems items);
+        Task<int> UpdateOrderItems(OrderItems items);
+        Task<int> DeleteOrderItem(int id);
 
-        public Task<int> UpdateUser(Users users);
+        // Products
+        Task<Products_List> GetAllProducts();
+        Task<int> AddProduct(Products products);
+        Task<int> UpdateProduct(Products products);
+        Task<int> DeleteProduct(int id);
 
-        public Task<int> DeleteUser(int id);
+        // Products Categories
+        Task<Products_Categories_List> GetAllProducts_Categories();
+        Task<int> AddProduct_Category(Products_Categories products_Categories);
+        Task<int> UpdateProduct_Category(Products_Categories products_Categories);
+        Task<int> DeleteProduct_Category(int id);
 
-        public Task<Membership_List> GetAllMembers();
-
-        public Task<int> AddMember(Membership membership);
-
-        public Task<int> UpdateMember(Membership membership);
-
-        public Task<int> DeleteMember(int id);
-
-        public Task<Favorites_List> GetAllFavorites();
-
-        public Task<int> AddFavorite(Favorites favorites);
-
-        public Task<int> UpdateFavorite(Favorites favorites);
-
-        public Task<int> DeleteFavorite(int id);
-
-        public Task<Orders_List> GetAllOrders();
-
-        public Task<int> AddOrder(Orders orders);
-
-        public Task<int> UpdateOrder(Orders orders);
-
-        public Task<int> DeleteOrder(int id);
-
-        public Task<OrderItems_List> GetAllOrderItems();
-
-        public Task<int> AddOrderItems(OrderItems items);
-
-        public Task<int> UpdateOrderItems(OrderItems items);
-
-        public Task<int> DeleteOrderItem(int id);
-
-        public Task<Products_List> GetAllProducts();
-
-        public Task<int> AddProduct(Products products);
-
-        public Task<int> UpdateProduct(Products products);
-
-        public Task<int> DeleteProduct(int id);
-
-        public Task<Products_Categories_List> GetAllProducts_Categories();
-
-        public Task<int> AddProduct_Category(Products_Categories products_Categories);
-
-        public Task<int> UpdateProduct_Category(Products_Categories products_Categories);
-
-        public Task<int> DeleteProduct_Category(int id);
-
-        public Task<Videos_List> GetAllVideos();
-
-        public Task<int> AddVideos(Videos videos);
-
-        public Task<int> UpdateVideos(Videos videos);
-
-        public Task<int> DeleteVideos(int id);
+        // Videos
+        Task<Videos_List> GetAllVideos();
+        Task<int> AddVideos(Videos videos);
+        Task<int> UpdateVideos(Videos videos);
+        Task<int> DeleteVideos(int id);
     }
 }
