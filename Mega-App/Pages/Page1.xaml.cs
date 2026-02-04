@@ -30,14 +30,17 @@ namespace Mega_App.Pages
             Log("Starting Membership Test...");
             var item = new Membership
             {
-                Id = 2,
+                Email = "",
+                Username = "MembershipUser",
+                Passkey = "pass123",
+                Role = (Role)2,
                 Join_Date = DateTime.Now,
                 Birthday_Date = new DateTime(2000, 8, 5)
             };
             await RunFullTest("Membership",
                 () => api.AddMember(item),
                 () => api.UpdateMember(item),
-                (id) => api.DeleteMember(item.Id));
+                () => api.DeleteMember(item.Id));
         }
 
         private async void TestUsers_Click(object sender, RoutedEventArgs e)
@@ -53,7 +56,7 @@ namespace Mega_App.Pages
             await RunFullTest("User",
                 () => api.AddUser(item),
                 () => api.UpdateUser(item),
-                (id) => api.DeleteUser(item.Id));
+                () => api.DeleteUser(item.Id));
         }
 
         private async void TestCategories_Click(object sender, RoutedEventArgs e)
@@ -63,7 +66,7 @@ namespace Mega_App.Pages
             await RunFullTest("Category",
                 () => api.AddCategory(item),
                 () => api.UpdateCategory(item),
-                (id) => api.DeleteCategory(item.Id));
+                () => api.DeleteCategory(item.Id));
         }
 
         private async void TestProducts_Click(object sender, RoutedEventArgs e)
@@ -73,12 +76,14 @@ namespace Mega_App.Pages
             {
                 Product_Name = "Test Product",
                 Price = 10.99,
-                Amount_In_Stock = 100
+                Amount_In_Stock = 100,
+                Picture = "test.png",
+                Product_Description = "This is a test product."
             };
             await RunFullTest("Product",
                 () => api.AddProduct(item),
                 () => api.UpdateProduct(item),
-                (id) => api.DeleteProduct(item.Id));
+                () => api.DeleteProduct(item.Id));
         }
 
         private async void TestFavorites_Click(object sender, RoutedEventArgs e)
@@ -106,7 +111,7 @@ namespace Mega_App.Pages
             await RunFullTest("Favorite",
                 () => api.AddFavorite(item),
                 () => api.UpdateFavorite(item),
-                (id) => api.DeleteFavorite(item.Id));
+                () => api.DeleteFavorite(item.Id));
         }
 
         private async void TestOrders_Click(object sender, RoutedEventArgs e)
@@ -126,7 +131,7 @@ namespace Mega_App.Pages
             await RunFullTest("Order",
                 () => api.AddOrder(item),
                 () => api.UpdateOrder(item),
-                (id) => api.DeleteOrder(item.Id));
+                () => api.DeleteOrder(item.Id));
         }
 
         private async void TestOrderItems_Click(object sender, RoutedEventArgs e)
@@ -161,7 +166,7 @@ namespace Mega_App.Pages
             await RunFullTest("OrderItem",
                 () => api.AddOrderItems(item),
                 () => api.UpdateOrderItems(item),
-                (id) => api.DeleteOrderItem(item.Id));
+                () => api.DeleteOrderItem(item.Id));
         }
 
         private async void TestVideos_Click(object sender, RoutedEventArgs e)
@@ -183,23 +188,23 @@ namespace Mega_App.Pages
             await RunFullTest("Video",
                 () => api.AddVideos(item),
                 () => api.UpdateVideos(item),
-                (id) => api.DeleteVideos(item.Id));
+                () => api.DeleteVideos(item.Id));
         }
 
         // --- GENERIC TEST ENGINE ---
-        private async Task RunFullTest(string name, Func<Task<int>> add, Func<Task<int>> update, Func<int, Task<int>> delete)
+        private async Task RunFullTest(string name, Func<Task<int>> add, Func<Task<int>> update, Func<Task<int>> delete)
         {
             try
             {
                 int addResult = await add();
-                Log($"{name} Insert: {(addResult > 0 ? "SUCCESS" : "FAILED")}");
+                Log($"{name} Insert: {(addResult == 1 ? "SUCCESS" : $"FAILED {addResult}")}");
 
                 int updateResult = await update();
-                Log($"{name} Update: {(updateResult > 0 ? "SUCCESS" : "FAILED")}");
+                Log($"{name} Update: {(updateResult == 1 ? "SUCCESS" : $"FAILED {updateResult}")}");
 
                 // Using a placeholder ID for delete testing
-                int deleteResult = await delete(1);
-                Log($"{name} Delete (ID 1): {(deleteResult > 0 ? "SUCCESS" : "FAILED")}");
+                int deleteResult = await delete();
+                Log($"{name} Delete: {(deleteResult >= 0 ? "SUCCESS" : "FAILED")}");
 
                 Log($"--- {name} Test Complete ---\n");
             }

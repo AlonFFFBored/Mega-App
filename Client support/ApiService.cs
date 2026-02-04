@@ -36,7 +36,14 @@ namespace Client_support
             try
             {
                 HttpResponseMessage result = await client.PostAsJsonAsync(endpoint, entity);
-                return result.IsSuccessStatusCode ? 1 : 0;
+                if (result.IsSuccessStatusCode)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return (int)result.StatusCode;
+                }
             }
             catch (Exception ex)
             {
@@ -49,7 +56,15 @@ namespace Client_support
             try
             {
                 HttpResponseMessage result = await client.PutAsJsonAsync(endpoint, entity);
-                return result.IsSuccessStatusCode ? 1 : 0;
+                //return result.IsSuccessStatusCode ? 1 : 0;
+                if (result.IsSuccessStatusCode)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return (int)result.StatusCode;
+                }
             }
             catch (Exception ex)
             {
