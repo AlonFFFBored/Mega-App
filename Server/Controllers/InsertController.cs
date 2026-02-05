@@ -64,7 +64,7 @@ namespace Server.Controllers
         }
 
         [HttpPost]
-        [ActionName("InsertAProducts")]
+        [ActionName("InsertAProduct")]
         public int InsertProduct(Products product)
         {
             Products_DB productsDB = new Products_DB();
@@ -73,7 +73,7 @@ namespace Server.Controllers
         }
 
         [HttpPost]
-        [ActionName("InsertAProductsCaegories")]
+        [ActionName("InsertAProductCaegory")]
         public int InsertProductCategory(Products_Categories productscategories)
         {
             Products_CategoriesDB productsCategoriesDB = new Products_CategoriesDB();
