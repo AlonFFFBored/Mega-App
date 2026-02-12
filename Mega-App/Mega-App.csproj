@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="5.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="images\dyson.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

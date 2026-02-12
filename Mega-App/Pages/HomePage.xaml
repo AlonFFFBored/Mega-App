@@ -5,17 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Mega_App.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="800"
       Title="HomePage">
 
     <Grid Background="#f0f0f0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="450"/>
+            <RowDefinition Height="350"/> 
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <ListBox x:Name="ImageSlider" 
+        <Grid Grid.Row="0" Background="Black"> <ListBox x:Name="ImageSlider" 
                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      ScrollViewer.CanContentScroll="False"
@@ -29,19 +28,32 @@
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
 
-
-                <Image Source="/images/dyson.jpg" Width="{Binding ElementName=ImageSlider, Path=ActualWidth}" Stretch="UniformToFill"/>
-                <Image Source="/images/iphone.jpg" Width="{Binding ElementName=ImageSlider, Path=ActualWidth}" Stretch="UniformToFill"/>
-                <Image Source="/images/insta camera.jpg" Width="{Binding ElementName=ImageSlider, Path=ActualWidth}" Stretch="UniformToFill"/>
+                <Image Source="/images/dyson.jpg" 
+                       Width="{Binding ElementName=ImageSlider, Path=ActualWidth}" 
+                       Stretch="Uniform" 
+                       VerticalAlignment="Center"/>
+            
+                <Image Source="/images/iphone.jpg" 
+                       Width="{Binding ElementName=ImageSlider, Path=ActualWidth}" 
+                       Stretch="Uniform" 
+                       VerticalAlignment="Center"/>
+            
+                <Image Source="/images/insta camera.jpg" 
+                       Width="{Binding ElementName=ImageSlider, Path=ActualWidth}" 
+                       Stretch="Uniform" 
+                       VerticalAlignment="Center"/>
 
             </ListBox>
+        
             <Button Content="&lt;" HorizontalAlignment="Left" VerticalAlignment="Center" 
-                    Click="Prev_Click" Width="50" Height="60" Opacity="0.5" FontSize="24" Margin="10,0,0,0"/>
+                    Click="Prev_Click" Width="40" Height="50" Opacity="0.5" Margin="5"/>
 
             <Button Content="&gt;" HorizontalAlignment="Right" VerticalAlignment="Center" 
-                    Click="Next_Click" Width="50" Height="60" Opacity="0.5" FontSize="24" Margin="0,0,10,0"/>
+                    Click="Next_Click" Width="40" Height="50" Opacity="0.5" Margin="5"/>
         </Grid>
 
         <TextBlock Grid.Row="1" Text="Welcome to the Store" HorizontalAlignment="Center" Margin="20" FontSize="20"/>
+
     </Grid>
+    
 </Page>
