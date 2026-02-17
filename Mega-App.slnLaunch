@@ -8,7 +8,7 @@
         "DebugTarget": "https"
       },
       {
-        "Path": "Mega-App\\Mega-App.csproj",
+        "Path": "Mega-App\\MegaApp.csproj",
         "Action": "Start",
         "DebugTarget": "Mega-App"
       }

@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client support", "Client support\Client support.csproj", "{7572A874-8A64-4FD8-AF9C-CB78279CFD84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mega-App", "Mega-App\Mega-App.csproj", "{8EE3FC6E-A84C-4789-AC04-9A3D44960B54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaApp", "Mega-App\MegaApp.csproj", "{8EE3FC6E-A84C-4789-AC04-9A3D44960B54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

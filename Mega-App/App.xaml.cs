@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Mega_App
+namespace MegaApp
 {
     /// <summary>
     /// Interaction logic for App.xaml

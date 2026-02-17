@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-namespace Mega_App.Pages
+namespace MegaApp.Pages
 {
     public partial class HomePage : Page
     {
@@ -45,6 +45,11 @@ namespace Mega_App.Pages
             {
                 ImageSlider.ScrollIntoView(ImageSlider.SelectedItem);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Page1());
         }
     }
 }

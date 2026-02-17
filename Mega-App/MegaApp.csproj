@@ -3,11 +3,18 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>Mega_App</RootNamespace>
+    <RootNamespace>MegaApp</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="UserControls\**" />
+    <EmbeddedResource Remove="UserControls\**" />
+    <None Remove="UserControls\**" />
+    <Page Remove="UserControls\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="images\dyson.jpg" />
@@ -18,10 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Client support\Client support.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UserControls\" />
   </ItemGroup>
 
   <ItemGroup>
