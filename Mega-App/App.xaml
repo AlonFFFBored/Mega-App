@@ -13,6 +13,11 @@
             <Color x:Key="ColorMuted">#ECECF0</Color>
             <Color x:Key="ColorAccent">#E9EBEF</Color>
             <Color x:Key="ColorBorder">#1A000000</Color>
+            <Color x:Key="ColorAccent">#E9EBEF</Color>
+            <SolidColorBrush x:Key="BrushAccent" Color="{StaticResource ColorAccent}"/>
+
+            <Color x:Key="ColorMuted">#ECECF0</Color>
+            <SolidColorBrush x:Key="BrushMuted" Color="{StaticResource ColorMuted}"/>
             <SolidColorBrush x:Key="BrushBackground" Color="{StaticResource ColorBackground}"/>
             <SolidColorBrush x:Key="BrushForeground" Color="{StaticResource ColorForeground}"/>
             <SolidColorBrush x:Key="BrushPrimary" Color="{StaticResource ColorPrimary}"/>
@@ -55,6 +60,46 @@
                         CornerRadius="25">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
                             </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="NavButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Padding" Value="12,8"/>
+                <Setter Property="Template">
+                    
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="{StaticResource BrushAccent}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="PrimaryNavButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource BrushPrimary}"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Padding" Value="20,8"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="20" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="0.9"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
