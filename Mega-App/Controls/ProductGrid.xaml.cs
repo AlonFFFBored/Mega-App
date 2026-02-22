@@ -12,31 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MegaApp.Controls;
 
-namespace MegaApp.Pages
+namespace MegaApp.Controls
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for HeroBanner.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class HeroBanner : UserControl
     {
-        public Page1()
+        public HeroBanner()
         {
             InitializeComponent();
-            Loaded += Banner_Loaded;
-        }
-
-        private void Banner_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-            sp.Children.Add(new Hero());
-            //LoadView(new HeroBanner());
-        }
-
-        private void LoadView(UserControl uc)
-        {
-            MainContent.Content = uc;
         }
     }
 }

@@ -10,6 +10,7 @@
       Title="Page1">
 
     <Grid>
+        <StackPanel x:Name="sp">
         <Controls:HeroBanner x:Name="Banner" Loaded="Banner_Loaded" />
 
 
@@ -17,5 +18,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Background="Transparent"/>
+
+        </StackPanel>
     </Grid>
 </Page>

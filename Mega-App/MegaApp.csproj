@@ -43,4 +43,13 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Controls\ProductGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ProductCard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

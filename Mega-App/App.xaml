@@ -13,15 +13,15 @@
             <Color x:Key="ColorMuted">#ECECF0</Color>
             <Color x:Key="ColorAccent">#E9EBEF</Color>
             <Color x:Key="ColorBorder">#1A000000</Color>
-            <Color x:Key="ColorAccent">#E9EBEF</Color>
-            <SolidColorBrush x:Key="BrushAccent" Color="{StaticResource ColorAccent}"/>
+            <!--<Color x:Key="ColorAccent">#E9EBEF</Color>-->
+            <SolidColorBrush x:Key="BrushAccent" Color="{StaticResource ColorBackground}"/>
 
-            <Color x:Key="ColorMuted">#ECECF0</Color>
-            <SolidColorBrush x:Key="BrushMuted" Color="{StaticResource ColorMuted}"/>
+            <!--<Color x:Key="ColorMuted">#ECECF0</Color>-->
+            <SolidColorBrush x:Key="BrushMuted" Color="{StaticResource ColorPrimary}"/>
             <SolidColorBrush x:Key="BrushBackground" Color="{StaticResource ColorBackground}"/>
             <SolidColorBrush x:Key="BrushForeground" Color="{StaticResource ColorForeground}"/>
             <SolidColorBrush x:Key="BrushPrimary" Color="{StaticResource ColorPrimary}"/>
-            <SolidColorBrush x:Key="BrushMuted" Color="{StaticResource ColorMuted}"/>
+            <!--<SolidColorBrush x:Key="BrushMuted" Color="{StaticResource ColorMuted}"/>-->
             <SolidColorBrush x:Key="BrushBorder" Color="{StaticResource ColorBorder}"/>
 
             <CornerRadius x:Key="RadiusMd">6</CornerRadius>

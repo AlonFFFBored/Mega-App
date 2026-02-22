@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="MegaApp.Controls.ProductGrid" ...>
+    <StackPanel Margin="0,48">
+        <Grid Margin="0,0,0,32">
+            <TextBlock Text="Recommended for You" FontSize="24" FontWeight="Bold"/>
+            <Button Content="View All" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Foreground="{StaticResource BrushPrimary}" FontWeight="Medium"/>
+        </Grid>
+
+        <ItemsControl ItemsSource="{Binding Products}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:ProductCard/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>
