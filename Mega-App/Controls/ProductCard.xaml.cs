@@ -18,9 +18,9 @@ namespace MegaApp.Controls
     /// <summary>
     /// Interaction logic for HeroBanner.xaml
     /// </summary>
-    public partial class HeroBanner : UserControl
+    public partial class ProductCard : UserControl
     {
-        public HeroBanner()
+        public ProductCard()
         {
             InitializeComponent();
         }
