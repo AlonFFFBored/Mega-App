@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MegaApp.Controls
 {
     /// <summary>
-    /// Interaction logic for Hero.xaml
+    /// Interaction logic for HeroBanner.xaml
     /// </summary>
-    public partial class Hero : UserControl
+    public partial class HeroBanner : UserControl
     {
-        public Hero()
+        public HeroBanner()
         {
             InitializeComponent();
         }

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Server.Controllers.DeleteController" Collapsed="true">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgIAAAAEAAAAAAiAAAAAAAQAAEAAIAAAAAA=</HashCode>
+      <FileName>Controllers\DeleteController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Server.Controllers.InsertController" Collapsed="true">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAAAAEAACACAAAAAAAAAAEAAAAACAAAAAAAKAAAAAA=</HashCode>
+      <FileName>Controllers\InsertController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Server.Controllers.SelectController" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IIAAAQAgAAAAAAAAAAAQAAAEAQAAAAABQAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\SelectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Server.Controllers.UpdateController" Collapsed="true">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAEAIAAAAAAAAAAAAAAACAASAIAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\UpdateController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Server.Program" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.AspNetCore.Mvc.ControllerBase" Collapsed="true">
+    <Position X="3.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
