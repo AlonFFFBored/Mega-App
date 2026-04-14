@@ -31,7 +31,7 @@ namespace MegaApp.Pages
         {
             
             sp.Children.Add(new Hero());
-            //LoadView(new HeroBanner());
+            //LoadView(new Hero());
         }
 
         private void LoadView(UserControl uc)

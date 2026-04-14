@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="MegaApp.Controls.ProductCard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:MegaApp.Controls"
              Width="350" Margin="10">
     <Border Background="{StaticResource BrushBackground}" 
             CornerRadius="16" BorderThickness="1" 

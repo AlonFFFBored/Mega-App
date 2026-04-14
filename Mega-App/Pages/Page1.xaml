@@ -11,10 +11,9 @@
 
     <Grid>
         <StackPanel x:Name="sp">
-        <Controls:HeroBanner x:Name="Banner" Loaded="Banner_Loaded" />
+            <Controls:Hero x:Name="Banner" Loaded="Banner_Loaded" />
 
-
-        <ContentControl x:Name="MainContent"
+            <ContentControl x:Name="MainContent"
                     Grid.Row="1"
                     Grid.Column="1"
                     Background="Transparent"/>
