@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MegaApp.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
 
     <UserControl.Resources>
         <Storyboard x:Key="OnLoadedStoryboard">
@@ -69,8 +69,8 @@
                                FontSize="18" Foreground="#E0E0E0" TextWrapping="Wrap" Margin="0,0,0,32"/>
 
                     <StackPanel Orientation="Horizontal">
-                        <Button Content="Shop Now" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,16,0"/>
-                        <Button Content="View Offers" Style="{StaticResource GhostButtonStyle}"/>
+                        <Button x:Name="ShopNowBtn" Content="Shop Now" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,16,0"/>
+                        <Button x:Name="ViewOffersBtn" Content="View Offers" Style="{StaticResource GhostButtonStyle}"/>
                     </StackPanel>
                 </StackPanel>
 

@@ -11,12 +11,13 @@
 
     <Grid>
         <StackPanel x:Name="sp">
-            <Controls:Hero x:Name="Banner" Loaded="Banner_Loaded" />
-
+            <TextBlock Height="60"></TextBlock>
             <ContentControl x:Name="MainContent"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Background="Transparent"/>
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Background="Transparent" Height="240"/>
+            
+            
 
         </StackPanel>
     </Grid>

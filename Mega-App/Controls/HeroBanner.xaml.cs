@@ -24,5 +24,12 @@ namespace MegaApp.Controls
         {
             InitializeComponent();
         }
+
+        public HeroBanner(RoutedEventHandler shopNowHandler, RoutedEventHandler viewOffersHandler)
+        {
+            InitializeComponent();
+            ShopNowBtn.Click += shopNowHandler;
+            ViewOffersBtn.Click += viewOffersHandler;
+        }
     }
 }

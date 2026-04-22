@@ -21,6 +21,11 @@ namespace MegaApp
             InitializeComponent();
         }
 
+        public void OpenNotImpWin(object sender, RoutedEventArgs e)
+        {
+            App.OpenNotImpWin(this);
 
+
+        }
     }
 }
