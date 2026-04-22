@@ -120,7 +120,8 @@
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Content" Value="🛒"/>
             </Style>
-
+            
+            
         </ResourceDictionary>
         
     </Application.Resources>

@@ -29,9 +29,7 @@ namespace MegaApp.Pages
 
         private void Banner_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            sp.Children.Add(new HeroBanner());
-            //LoadView(new HeroBanner());
+            LoadView(new HeroBanner());
         }
 
         private void LoadView(UserControl uc)
